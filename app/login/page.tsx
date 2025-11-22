@@ -1,65 +1,42 @@
-// app/registrieren/page.tsx
+// app/login/page.tsx
 'use client';
 
 import Link from 'next/link';
 import { useState } from 'react';
 
-export default function RegisterPage() {
+export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
-  const [showPasswordRepeat, setShowPasswordRepeat] = useState(false);
 
   return (
     <main className="min-h-screen bg-[#050505] text-neutral-100">
       <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-4 py-10">
-        {/* Pozadinski suptilni glow */}
+        {/* suptilni glow u pozadini */}
         <div className="pointer-events-none absolute inset-0 opacity-60">
           <div className="absolute -top-40 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-[#d1b371]/10 blur-3xl" />
           <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-[#d1b371]/5 blur-3xl" />
         </div>
 
-        {/* Card */}
+        {/* CARD */}
         <div className="relative w-full max-w-md rounded-3xl border border-neutral-800/90 bg-[#121212]/95 p-6 shadow-[0_28px_80px_rgba(0,0,0,0.9)] backdrop-blur">
-          {/* Gornja zlatna linija */}
+          {/* gornja zlatna linija */}
           <div className="absolute inset-x-6 top-0 h-[2px] rounded-b-full bg-gradient-to-r from-transparent via-[#d1b371] to-transparent" />
 
-          {/* Header */}
+          {/* HEADER */}
           <div className="mb-6 pt-2">
             <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-[#d1b371]">
-              Registrierung
+              Login
             </p>
             <h1 className="mt-1 text-lg font-medium text-neutral-50">
-              Erstelle deinen EventPlaces Account
+              Willkommen zurück bei EventPlaces
             </h1>
             <p className="mt-2 text-[12px] leading-relaxed text-neutral-400">
-              Verwalte deine Locations, Anfragen und Inserate in einer
-              professionellen Oberfläche – global, kuratiert und premium.
+              Melde dich an, um deine Locations, Buchungen und Inserate zu
+              verwalten – alles an einem Ort, global und kuratiert.
             </p>
           </div>
 
-          {/* Forma */}
+          {/* FORMA */}
           <form className="space-y-4">
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              <FormField
-                label="Vorname"
-                id="firstName"
-                autoComplete="given-name"
-                placeholder="Max"
-              />
-              <FormField
-                label="Nachname"
-                id="lastName"
-                autoComplete="family-name"
-                placeholder="Mustermann"
-              />
-            </div>
-
-            <FormField
-              label="Unternehmen / Marke"
-              id="company"
-              autoComplete="organization"
-              placeholder="EventPlaces GmbH"
-            />
-
             <FormField
               label="E-Mail"
               id="email"
@@ -68,80 +45,55 @@ export default function RegisterPage() {
               placeholder="you@example.com"
             />
 
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              <FormField
-                label="Land"
-                id="country"
-                placeholder="Schweiz, Deutschland, ..."
-              />
-              <FormField
-                label="Telefon (optional)"
-                id="phone"
-                autoComplete="tel"
-                placeholder="+41 ..."
-              />
+            <PasswordField
+              label="Passwort"
+              id="password"
+              show={showPassword}
+              onToggle={() => setShowPassword(prev => !prev)}
+            />
+
+            {/* remember + forgot */}
+            <div className="mt-1 flex items-center justify-between text-[11px] text-neutral-400">
+              <label className="inline-flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  className="h-3.5 w-3.5 rounded border border-neutral-700 bg-transparent text-[#d1b371] focus:ring-0"
+                />
+                <span className="select-none">
+                  Eingeloggt bleiben
+                </span>
+              </label>
+              <Link
+                href="/passwort-vergessen"
+                className="text-[#d1b371] underline-offset-2 hover:underline"
+              >
+                Passwort vergessen?
+              </Link>
             </div>
 
-            {/* Password */}
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              <PasswordField
-                label="Passwort"
-                id="password"
-                show={showPassword}
-                onToggle={() => setShowPassword(prev => !prev)}
-              />
-              <PasswordField
-                label="Passwort wiederholen"
-                id="passwordRepeat"
-                show={showPasswordRepeat}
-                onToggle={() => setShowPasswordRepeat(prev => !prev)}
-              />
-            </div>
-
-            {/* Terms */}
-            <div className="mt-2 space-y-2 text-[11px] text-neutral-400">
-              <p>
-                Mit der Registrierung akzeptierst du unsere{' '}
-                <Link
-                  href="/agb"
-                  className="text-[#d1b371] underline-offset-2 hover:underline"
-                >
-                  AGB
-                </Link>{' '}
-                und{' '}
-                <Link
-                  href="/datenschutz"
-                  className="text-[#d1b371] underline-offset-2 hover:underline"
-                >
-                  Datenschutzbestimmungen
-                </Link>
-                .
-              </p>
-            </div>
-
-            {/* Submit */}
+            {/* SUBMIT */}
             <div className="mt-4 flex flex-col gap-3">
               <button
                 type="submit"
                 className="inline-flex w-full items-center justify-center rounded-full border border-[#d1b371]/70 bg-gradient-to-r from-[#d1b371] via-[#e2c58d] to-[#d1b371] px-6 py-2.5 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#1b1b1b] shadow-[0_18px_45px_rgba(0,0,0,0.9)] transition-transform hover:scale-[1.01] active:scale-[0.99]"
               >
-                Konto erstellen
+                Login
               </button>
 
               <p className="text-center text-[11px] text-neutral-400">
-                Bereits ein Account?{' '}
+                Noch kein Account?{' '}
                 <Link
-                  href="/login"
+                  href="/register"
                   className="text-[#d1b371] underline-offset-2 hover:underline"
                 >
-                  Login
+                  Jetzt registrieren
                 </Link>
               </p>
             </div>
           </form>
         </div>
 
-        {/* Mali hint dolje */}
+        {/* mali hint dolje */}
         <p className="mt-6 text-center text-[11px] text-neutral-500">
           EventPlaces • Premium Locations &amp; Venues Worldwide
         </p>
@@ -150,7 +102,7 @@ export default function RegisterPage() {
   );
 }
 
-// Pomoćne komponente
+/* POMOĆNE KOMPONENTE – iste logike kao na register stranici */
 
 type FormFieldProps = {
   label: string;
@@ -171,7 +123,7 @@ function FormField({
     <div className="space-y-1.5">
       <label
         htmlFor={id}
-        className="text-[11px] font-medium uppercase tracking-[0.22em] text-neutral-300"
+        className="block whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.18em] text-neutral-300"
       >
         {label}
       </label>
@@ -208,6 +160,7 @@ function PasswordField({ label, id, show, onToggle }: PasswordFieldProps) {
           id={id}
           name={id}
           type={show ? 'text' : 'password'}
+          autoComplete="current-password"
           className="w-full rounded-xl bg-transparent px-3 py-2 text-[13px] text-neutral-100 outline-none"
         />
         <button
