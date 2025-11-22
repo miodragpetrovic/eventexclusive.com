@@ -64,7 +64,7 @@ export default function LoginPage() {
                 </span>
               </label>
               <Link
-                href="/passwort-vergessen"
+                href="/password-reset"
                 className="text-[#d1b371] underline-offset-2 hover:underline"
               >
                 Passwort vergessen?
