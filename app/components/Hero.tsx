@@ -11,9 +11,9 @@ type HeroProps = {
 // You should replace these with your own production images,
 // but these Unsplash URLs are stable enough for development/demo.
 const DEFAULT_IMAGES: string[] = [
-  'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1920&q=80',
-  'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80',
-  'https://images.unsplash.com/photo-1520256862855-398228c41684?auto=format&fit=crop&w=1920&q=80',
+  '../img/event-location.jpg',
+  '../img/event-location-exclusive.jpg',
+  '../img/event-location-wedding.jpg',
 ];
 
 export function Hero({ images = DEFAULT_IMAGES }: HeroProps) {

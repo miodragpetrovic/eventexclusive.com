@@ -1,9 +1,20 @@
- 'use client';
+'use client';
 
 import Link from 'next/link';
 import { Instagram, Linkedin, Globe2, Mail } from 'lucide-react';
+import type { ReactNode } from 'react';
 
-const FOOTER_NAV = {
+type FooterLink = {
+  label: string;
+  href: string;
+};
+
+const FOOTER_NAV: {
+  discover: readonly FooterLink[];
+  providers: readonly FooterLink[];
+  company: readonly FooterLink[];
+  legal: readonly FooterLink[];
+} = {
   discover: [
     { label: 'Home', href: '/' },
     { label: 'Locations entdecken', href: '/locations' },
@@ -12,7 +23,7 @@ const FOOTER_NAV = {
   providers: [
     { label: 'Für Location-Besitzer', href: '/inserieren' },
     { label: 'Für Agenturen', href: '/fuer-agenturen' },
-    { label: 'Preise & Pakete', href: '/preise' },
+    { label: 'Preise & Pakete', href: '/pakete' }, // path sam uskladio s tvojom pakete stranicom
   ],
   company: [
     { label: 'Über uns', href: '/ueber-uns' },
@@ -24,7 +35,9 @@ const FOOTER_NAV = {
     { label: 'Datenschutz', href: '/datenschutz' },
     { label: 'Impressum', href: '/impressum' },
   ],
-} as const;
+};
+
+const currentYear = new Date().getFullYear();
 
 export function Footer() {
   return (
@@ -92,9 +105,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-8 flex flex-col items-start justify-between gap-3 border-t border-neutral-900 pt-4 text-[11px] text-neutral-500 md:flex-row md:items-center">
-          <p>
-            © {new Date().getFullYear()} EventPlaces. Alle Rechte vorbehalten.
-          </p>
+          <p>© {currentYear} EventPlaces. Alle Rechte vorbehalten.</p>
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-[10px] uppercase tracking-[0.18em] text-neutral-500">
               Crafted for premium hospitality &amp; events.
@@ -108,7 +119,7 @@ export function Footer() {
 
 type FooterColumnProps = {
   title: string;
-  links: { label: string; href: string }[];
+  links: readonly FooterLink[];
 };
 
 function FooterColumn({ title, links }: FooterColumnProps) {
@@ -136,7 +147,7 @@ function FooterColumn({ title, links }: FooterColumnProps) {
 type SocialIconProps = {
   href: string;
   label: string;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 function SocialIcon({ href, label, children }: SocialIconProps) {

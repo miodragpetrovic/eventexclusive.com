@@ -143,7 +143,7 @@ export function Navbar() {
 
             {/* Inserieren – premium dugme sa plus ikonom (desktop) */}
             <Link
-              href="/inserieren"
+              href="/packages"
               className="hidden items-center gap-1.5 rounded-full border border-[#d1b371]/60 bg-gradient-to-r from-[#d1b371] via-[#e2c58d] to-[#d1b371] px-5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.26em] text-[#1b1b1b] shadow-[0_14px_35px_rgba(0,0,0,0.65)] transition-transform hover:scale-[1.02] active:scale-[0.99] md:inline-flex"
             >
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#1f1f1f]">
